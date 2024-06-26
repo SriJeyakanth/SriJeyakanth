@@ -1,0 +1,27 @@
+# Tamil-Kannada dictionary
+tamil_to_kannada = {
+    "நான்": "ನಾನು",     # I
+    "வீடு": "ಮನೆ",      # house
+    "நீங்கள்": "ನೀವು",  # you
+    "பழம்": "ಹಣ್ಣು",   # fruit
+    "நன்றாக": "ಚೆನ್ನಾಗಿ" # well
+}
+
+def translate_word(tamil_word):
+    kannada_word = tamil_to_kannada.get(tamil_word)
+    if kannada_word:
+        return kannada_word
+    else:
+        return "Translation not found"
+
+def main():
+    print("Tamil-Kannada Translator")
+    while True:
+        tamil_word = input("Enter a Tamil word (or type 'exit' to quit): ").strip()
+        if tamil_word.lower() == 'exit':
+            break
+        kannada_word = translate_word(tamil_word)
+        print(f"Kannada translation: {kannada_word}")
+
+if __name__ == "__main__":
+    main()
