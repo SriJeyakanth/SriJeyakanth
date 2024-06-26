@@ -13,4 +13,4 @@ A brief description of what this project does and who it's for.
 Clone the repository:
 
 ```sh
-git clone https://github.com/srijeyakanth/your-repository.git
+git clone https://github.comhttps://github.com/SriJeyakanth/SriJeyakanthgit
