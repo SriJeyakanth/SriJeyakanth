@@ -1,0 +1,81 @@
+import sys
+import os
+
+TASKS_FILE = 'tasks.txt'
+
+def load_tasks():
+    if not os.path.exists(TASKS_FILE):
+        return []
+    with open(TASKS_FILE, 'r') as f:
+        return [line.strip().split('|') for line in f]
+
+def save_tasks(tasks):
+    with open(TASKS_FILE, 'w') as f:
+        for task in tasks:
+            f.write('|'.join(task) + '\n')
+
+def add_task(description):
+    tasks = load_tasks()
+    tasks.append(['[ ]', description])
+    save_tasks(tasks)
+    print(f"Added task: {description}")
+
+def list_tasks():
+    tasks = load_tasks()
+    if not tasks:
+        print("No tasks found.")
+        return
+    for i, task in enumerate(tasks):
+        status, description = task
+        print(f"{i + 1}. {status} {description}")
+
+def mark_task_done(task_number):
+    tasks = load_tasks()
+    if 0 < task_number <= len(tasks):
+        tasks[task_number - 1][0] = '[x]'
+        save_tasks(tasks)
+        print(f"Marked task {task_number} as done.")
+    else:
+        print(f"Task number {task_number} does not exist.")
+
+def delete_task(task_number):
+    tasks = load_tasks()
+    if 0 < task_number <= len(tasks):
+        deleted_task = tasks.pop(task_number - 1)
+        save_tasks(tasks)
+        print(f"Deleted task: {deleted_task[1]}")
+    else:
+        print(f"Task number {task_number} does not exist.")
+
+def print_help():
+    print("Usage:")
+    print("  python todo.py add [task_description] - Add a new task")
+    print("  python todo.py list - List all tasks")
+    print("  python todo.py done [task_number] - Mark a task as done")
+    print("  python todo.py delete [task_number] - Delete a task")
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print_help()
+    else:
+        command = sys.argv[1]
+        if command == 'add':
+            description = ' '.join(sys.argv[2:])
+            if description:
+                add_task(description)
+            else:
+                print("Error: Task description cannot be empty.")
+        elif command == 'list':
+            list_tasks()
+        elif command == 'done':
+            if len(sys.argv) == 3 and sys.argv[2].isdigit():
+                mark_task_done(int(sys.argv[2]))
+            else:
+                print("Error: Please provide a valid task number.")
+        elif command == 'delete':
+            if len(sys.argv) == 3 and sys.argv[2].isdigit():
+                delete_task(int(sys.argv[2]))
+            else:
+                print("Error: Please provide a valid task number.")
+        else:
+            print_help()
