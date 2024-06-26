@@ -1,16 +1,16 @@
-# Project Title
+# GENERAL PROJECTS 
 
 A brief description of what this project does and who it's for.
 
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- IT CAN BE USED BY BEGINNERS
+- JUST FOR PRACTICE 
+- YOU CAN COPY IF YOU NEED.
 
 ## Installation
 
 Clone the repository:
 
 ```sh
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/srijeyakanth/your-repository.git
